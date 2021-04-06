@@ -16,10 +16,10 @@ import java.util.Iterator;
  * @author stani
  */
 public class HMAlarmChecker implements Runnable {
-    ArrayList<IAlarm> alarms = new ArrayList<>();
+    ArrayList<IEventListener> alarms = new ArrayList<>();
     IClock clock;
 
-    public HMAlarmChecker(ArrayList<IAlarm> alarms, IClock clock) {
+    public HMAlarmChecker(ArrayList<IEventListener> alarms, IClock clock) {
         this.alarms = alarms;
         this.clock = clock;
     }
@@ -30,19 +30,18 @@ public class HMAlarmChecker implements Runnable {
     public void run() {
         while (true) {
             try {
-                for (Iterator<IAlarm> iterator = alarms.iterator(); iterator.hasNext();) {
-                    IAlarm next = iterator.next();
-                    if (clock.getTime(SetType.hour) == next.getTime(SetType.hour)
-                            && clock.getTime(SetType.min) == next.getTime(SetType.min)) {
+                for (IEventListener alarm : alarms) {
+                    if (clock.getTime(SetType.min) == alarm.getTime(SetType.min)
+                            && clock.getTime(SetType.hour) == alarm.getTime(SetType.hour)) {
+                        alarm.setAlarm_now(true);
 
-                        next.setAlarm_now(true);
-
-                        Thread alarmTurnOffThread = new Thread() {
+                        Thread alarmTurnOffThread;
+                        alarmTurnOffThread = new Thread() {
                             @Override
                             public void run() {
                                 try {
                                     Thread.sleep(3000);
-                                    next.setAlarm_now(false);
+                                    alarm.setAlarm_now(false);
                                 } catch (InterruptedException e) {
                                     System.out.println(e);
                                 }

@@ -16,19 +16,19 @@ import java.util.ArrayList;
  * @author stani
  */
 public class AlarmFabric {
-    static public IAlarm hmAlarmCreate(int hour, int min) {
+    static public IEventListener hmAlarmCreate(int hour, int min) {
         return new HourMinAlarm(hour, min);
     }
     
-    static public IAlarm hmsAlarmCreate(int hour, int min, int sec) {
+    static public IEventListener hmsAlarmCreate(int hour, int min, int sec) {
         return new HourMinSecAlarm(hour, min, sec);
     }
     
-    static public HMAlarmChecker hmAlarmCheckerCreate(ArrayList<IAlarm> alarms, IClock clock) {
+    static public HMAlarmChecker hmAlarmCheckerCreate(ArrayList<IEventListener> alarms, IClock clock) {
         return new HMAlarmChecker(alarms, clock);
     }
     
-    static public HMSAlarmChecker hmsAlarmCheckerCreate(ArrayList<IAlarm> alarms, IClock clock) {
+    static public HMSAlarmChecker hmsAlarmCheckerCreate(ArrayList<IEventListener> alarms, IClock clock) {
         return new HMSAlarmChecker(alarms, clock);
     }
 }

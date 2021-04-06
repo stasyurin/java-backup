@@ -7,6 +7,9 @@ package clock;
 
 import Exceptions.SetTimeException;
 import Exceptions.TimeForwardException;
+import alarm.IEventListener;
+import java.util.ArrayList;
+import alarm.IEventListener;
 
 /**
  *
@@ -17,6 +20,30 @@ public class HourMinClock extends Clock implements IClock{
     int min_hand = 0;
     boolean pause = false;
     
+    ArrayList <IEventListener> event_listeners = new ArrayList<>();
+    
+    protected void timeChanged() {
+        event_listeners.forEach(event_listener -> {
+            event_listener.handleEvent(this);
+        });
+    }
+    
+    @Override
+    public void addEventListener(IEventListener event_listener) {
+        event_listeners.add(event_listener);
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public ArrayList<IEventListener> get_event_listeners() {
+        return event_listeners;
+    }
+    
+    
+    
     @Override
     public void setTime(int val, SetType t) throws SetTimeException {
         switch (t) {
@@ -25,6 +52,7 @@ public class HourMinClock extends Clock implements IClock{
                     throw new SetTimeException("setHour: invalid value");
                 } else {
                     hour_hand = val;
+                    timeChanged();
                 }
                 break;
             case min:
@@ -32,6 +60,7 @@ public class HourMinClock extends Clock implements IClock{
                     throw new SetTimeException("setMin: invalid value");
                 } else {
                     min_hand = val;
+                    timeChanged();
                 }
                 break;
             default:
@@ -63,17 +92,11 @@ public class HourMinClock extends Clock implements IClock{
     }
 
     public boolean isHourValidValue(int hour) {
-        if (hour < 0 || hour > 11) {
-            return false;
-        }
-        return true;
+        return !(hour < 0 || hour > 11);
     }
     
     public boolean isMinValidValue(int min) {
-        if (min < 0 || min > 59) {
-            return false;
-        }
-        return true;
+        return !(min < 0 || min > 59);
     }
 
     @Override
@@ -81,6 +104,7 @@ public class HourMinClock extends Clock implements IClock{
         return super.toString() + hour_hand + ":" + min_hand;
     }
     
+    @Override
     public void moveTimeForward(int val, SetType t) throws TimeForwardException {
         switch (t) {
             case hour:
@@ -88,6 +112,7 @@ public class HourMinClock extends Clock implements IClock{
                     throw new TimeForwardException("hour: invalid value");
                 } else {
                     moveHourForward(val);
+                    timeChanged();
                 }
                 break;
             case min:
@@ -95,6 +120,7 @@ public class HourMinClock extends Clock implements IClock{
                     throw new TimeForwardException("min: invalid value");
                 } else {
                     moveMinForward(val);
+                    timeChanged();
                 }
                 break;
             default:
@@ -126,51 +152,6 @@ public class HourMinClock extends Clock implements IClock{
             return true;
         }
     }
-    
-    
-    
-//    @Override
-//    public void startClock(SetType change_interval) throws TimeForwardException {
-//        try {
-//            switch (change_interval) {
-//                case hour:
-//                    if (t == null) {
-//                        t = new Thread() {
-//                            @Override
-//                            public void run() {
-//                                while (true) {
-//                                    Thread.sleep(1000 * 60 * 60);
-//                                    moveTimeForward(1, change_interval);
-//                                }
-//                            }
-//                        };
-//                        t.start();
-//                    }
-//                    break;
-//                case min:
-//                    if (t == null) {
-//                        t = new Thread() {
-//                            @Override
-//                            public void run() {
-//                                while (true) {
-//                                    Thread.sleep(1000 * 60);
-//                                    moveTimeForward(1, change_interval);
-//                                }
-//                            }
-//                        };
-//                        t.start();
-//                    }
-//                    break;
-//                default:
-//                    break;
-//            }
-//        } catch (InterruptedException ex) {
-//
-//        } catch (TimeForwardException ex) {
-//            System.out.println(ex);
-//        }
-//
-//    }
 
     @Override
     public int getTime(SetType t) throws SetTimeException {
@@ -190,6 +171,8 @@ public class HourMinClock extends Clock implements IClock{
     public boolean isPause() {
         return pause;
     }
+
+
     
     
 }

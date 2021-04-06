@@ -5,6 +5,9 @@
  */
 package clock;
 
+import alarm.IEventListener;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -16,5 +19,7 @@ public interface IClock {
     int getTime(SetType t) throws Exceptions.SetTimeException;
     boolean isPause();
     void setPause(boolean pause);
+    void addEventListener(IEventListener event_listener);
+    public ArrayList<IEventListener> get_event_listeners();
     //void startClock(SetType time_type);
 }

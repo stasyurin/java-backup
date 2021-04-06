@@ -31,6 +31,7 @@ public class HourMinSecClock extends HourMinClock{
                     throw new SetTimeException("setSec: invalid value");
                 } else {
                     sec_hand = val;
+                    timeChanged();
                 }
             } else {
                 throw new SetTimeException("not allowed type: " + t);
@@ -74,6 +75,7 @@ public class HourMinSecClock extends HourMinClock{
                     throw new TimeForwardException("sec: invalid value");
                 } else {
                     moveSecForward(val);
+                    timeChanged();
                 }
             } else {
                 throw new TimeForwardException("not allowed type: " + t);

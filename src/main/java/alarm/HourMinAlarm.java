@@ -6,15 +6,16 @@
 package alarm;
 
 import Exceptions.SetTimeException;
-import Exceptions.TimeForwardException;
 import clock.SetType;
 import clock.IClock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author stani
  */
-public class HourMinAlarm implements IAlarm {
+public class HourMinAlarm implements IEventListener {
 
     int hour, min;
     boolean alarm_now = false;
@@ -31,6 +32,7 @@ public class HourMinAlarm implements IAlarm {
         this.alarm_now = alarm_now;
     }
 
+    @Override
     public boolean isAlarm_now() {
         return alarm_now;
     }
@@ -69,17 +71,11 @@ public class HourMinAlarm implements IAlarm {
     }
 
     public boolean isHourValidValue(int hour) {
-        if (hour < 0 || hour > 11) {
-            return false;
-        }
-        return true;
+        return !(hour < 0 || hour > 11);
     }
 
     public boolean isMinValidValue(int min) {
-        if (min < 0 || min > 59) {
-            return false;
-        }
-        return true;
+        return !(min < 0 || min > 59);
     }
     
     
@@ -87,12 +83,45 @@ public class HourMinAlarm implements IAlarm {
 
     @Override
     public int getTime(SetType t) throws SetTimeException {
-        if (t == SetType.hour) {
-            return hour;
-        } else if (t == SetType.min) {
-            return min;
-        } else {
+        if (null == t) {
             throw new SetTimeException("not allowed type: " + t);
+        } else switch (t) {
+            case hour:
+                return hour;
+            case min:
+                return min;
+            default:
+                throw new SetTimeException("not allowed type: " + t);
+        }
+    }
+
+    /**
+     *
+     * @param clock
+     */
+    @Override
+    public void handleEvent(IClock clock) {
+        try {
+            if (clock.getTime(SetType.min) == min
+                    && clock.getTime(SetType.hour) == hour) {
+                setAlarm_now(true);
+                
+                Thread alarmTurnOffThread;
+                alarmTurnOffThread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(3000);
+                            setAlarm_now(false);
+                        } catch (InterruptedException e) {
+                            System.out.println(e);
+                        }
+                    }
+                };
+                alarmTurnOffThread.start();
+            }
+        } catch (SetTimeException ex) {
+            System.out.println(ex);
         }
     }
     

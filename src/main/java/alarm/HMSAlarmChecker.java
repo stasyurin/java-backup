@@ -17,7 +17,7 @@ import java.util.Iterator;
  */
 public class HMSAlarmChecker extends HMAlarmChecker {
 
-    public HMSAlarmChecker(ArrayList<IAlarm> alarms, IClock clock) {
+    public HMSAlarmChecker(ArrayList<IEventListener> alarms, IClock clock) {
         super(alarms, clock);
     }
     
@@ -25,8 +25,8 @@ public class HMSAlarmChecker extends HMAlarmChecker {
     public void run() {
             while (true) {
                 try {
-                    for (Iterator<IAlarm> iterator = alarms.iterator(); iterator.hasNext();) {
-                        IAlarm next = iterator.next();
+                    for (Iterator<IEventListener> iterator = alarms.iterator(); iterator.hasNext();) {
+                        IEventListener next = iterator.next();
                         if (clock.getTime(SetType.hour) == next.getTime(SetType.hour)
                                 && clock.getTime(SetType.min) == next.getTime(SetType.min)
                                 && clock.getTime(SetType.sec) == next.getTime(SetType.sec)) {

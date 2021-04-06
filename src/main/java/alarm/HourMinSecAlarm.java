@@ -8,6 +8,8 @@ package alarm;
 import Exceptions.SetTimeException;
 import clock.IClock;
 import clock.SetType;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -57,4 +59,33 @@ public class HourMinSecAlarm extends HourMinAlarm {
             }
         }
     }
+
+    @Override
+    public void handleEvent(IClock clock) {
+        try {
+            if (clock.getTime(SetType.hour) == hour
+                    && clock.getTime(SetType.min) == min
+                    && clock.getTime(SetType.sec) == sec) {
+                
+                setAlarm_now(true);
+                
+                Thread alarmTurnOffThread = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(3000);
+                            setAlarm_now(false);
+                        } catch (InterruptedException e) {
+                            System.out.println(e);
+                        }
+                    }
+                };
+                alarmTurnOffThread.start();
+            }
+        } catch (SetTimeException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    
 }
