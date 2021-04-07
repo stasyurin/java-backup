@@ -28,7 +28,7 @@ public class TimeMovement implements Runnable {
     @Override
     public void run() {
         try {
-            if ("clock.ourMinClock".equals(clock.getClass().getName())) {
+            if ("clock.HourMinClock".equals(clock.getClass().getName())) {
                 while (true) {
                     if (clock.isPause()) {
                         synchronized (clock) {
