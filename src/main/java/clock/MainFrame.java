@@ -17,7 +17,6 @@ import alarm.HourMinSecAlarm;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
-import jdk.nashorn.internal.runtime.JSType;
 import alarm.IEventListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +32,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        alarmLabel.setVisible(false);
+        alarmLabel1.setVisible(false);
+        alarmLabel2.setVisible(false);
+        alarmLabel3.setVisible(false);
         // alarmThread.start();
     }
     
@@ -51,16 +52,18 @@ public class MainFrame extends javax.swing.JFrame {
 //    Runnable alarmChecker = new HMSAlarmChecker(alarms, hms_clock1);
 //    Thread alarmThread = new Thread(alarmChecker);
     
-    boolean alarm_now = false;
+    boolean alarm1_now = false;
+    boolean alarm2_now = false;
+    boolean alarm3_now = false;
 
     Thread repaintingThread;
     
     // Runnable r1 = new TimeMovement(hms_clock1);
-    Runnable r2 = new TimeMovement(hms_clock2);
+    // Runnable r2 = new TimeMovement(hms_clock2);
     // Runnable r3 = new TimeMovement(hm_clock);
     Thread hms_clock1Thread;
     Thread hms_clock2Thread;
-    // Thread hm_clockThread;
+    Thread hm_clockThread;
     
     
     public void startTime() {
@@ -69,10 +72,12 @@ public class MainFrame extends javax.swing.JFrame {
 //            hms_clock1Thread.start();
 //        }
         hms_clock1_manager.startTime();
-        if (hms_clock2Thread == null) {
-            hms_clock2Thread = new Thread(r2);
-            hms_clock2Thread.start();
-        }
+        hms_clock2_manager.startTime();
+        hm_clock_manager.startTime();
+//        if (hms_clock2Thread == null) {
+//            hms_clock2Thread = new Thread(r2);
+//            hms_clock2Thread.start();
+//        }
 //        if (hm_clockThread == null) {
 //            hm_clockThread = new Thread(r3);
 //            hm_clockThread.start();
@@ -87,22 +92,54 @@ public class MainFrame extends javax.swing.JFrame {
                         try {
                             TimeLabel1.setText("" + hms_clock1);
                             TimeLabel2.setText("" + hms_clock2);
+                            TimeLabel3.setText("" + hm_clock);
                             
-                            int alarms_now_num = 0;
+                            // int alarms_now_num = 0;
                             for (IEventListener alarm : hms_clock1.get_event_listeners()) {
                                 if (alarm.isAlarm_now()) {
-                                    alarm_now = true;
-                                    alarms_now_num++;
-                                    alarmLabel.setText("ALARM " + alarms_now_num);
-                                    alarmLabel.setVisible(true);
+                                    alarm1_now = true;
+                                    // alarms_now_num++;
+                                    // alarmLabel1.setText("ALARM " + alarms_now_num);
+                                    alarmLabel1.setVisible(true);
                                     break;
                                 } else {
-                                    alarm_now = false;
+                                    alarm1_now = false;
                                 }
                             }
-                            if (!alarm_now) {
-                                alarmLabel.setVisible(false);
+                            if (!alarm1_now) {
+                                alarmLabel1.setVisible(false);
                             }
+                            
+                            for (IEventListener alarm : hms_clock2.get_event_listeners()) {
+                                if (alarm.isAlarm_now()) {
+                                    alarm2_now = true;
+                                    // alarms_now_num++;
+                                    // alarmLabel1.setText("ALARM " + alarms_now_num);
+                                    alarmLabel2.setVisible(true);
+                                    break;
+                                } else {
+                                    alarm2_now = false;
+                                }
+                            }
+                            if (!alarm2_now) {
+                                alarmLabel2.setVisible(false);
+                            }
+                            
+                            for (IEventListener alarm : hm_clock.get_event_listeners()) {
+                                if (alarm.isAlarm_now()) {
+                                    alarm3_now = true;
+                                    // alarms_now_num++;
+                                    // alarmLabel1.setText("ALARM " + alarms_now_num);
+                                    alarmLabel3.setVisible(true);
+                                    break;
+                                } else {
+                                    alarm3_now = false;
+                                }
+                            }
+                            if (!alarm3_now) {
+                                alarmLabel3.setVisible(false);
+                            }
+                            
                             
                             repaint();
                             Thread.sleep(1000);
@@ -115,20 +152,7 @@ public class MainFrame extends javax.swing.JFrame {
             repaintingThread.start();
         }
     }
-
-    
-    public void freezeTime() {
-        hms_clock1_manager.freezeTime();
-    }
-    
-    public void continueTime() {
-        hms_clock1_manager.continueTime();
-    }
-    
-    public void stopTime() {
-        hms_clock1_manager.stopTime();
-    }
-    
+ 
     
 
     /**
@@ -147,7 +171,7 @@ public class MainFrame extends javax.swing.JFrame {
         freezeTimeButton1 = new javax.swing.JButton();
         createAlarmButton1 = new javax.swing.JButton();
         hourTextField1 = new javax.swing.JTextField();
-        alarmLabel = new javax.swing.JLabel();
+        alarmLabel1 = new javax.swing.JLabel();
         secTextField1 = new javax.swing.JTextField();
         minTextField1 = new javax.swing.JTextField();
         createAlarmButton2 = new javax.swing.JButton();
@@ -161,18 +185,11 @@ public class MainFrame extends javax.swing.JFrame {
         continueTimeButton2 = new javax.swing.JButton();
         stopTimeButton1 = new javax.swing.JButton();
         stopTimeButton2 = new javax.swing.JButton();
-        alarmLabel1 = new javax.swing.JLabel();
         alarmLabel2 = new javax.swing.JLabel();
-        alarmLabel3 = new javax.swing.JLabel();
-        alarmLabel4 = new javax.swing.JLabel();
-        alarmLabel5 = new javax.swing.JLabel();
         TimeLabel3 = new javax.swing.JLabel();
-        alarmLabel6 = new javax.swing.JLabel();
-        alarmLabel7 = new javax.swing.JLabel();
-        alarmLabel8 = new javax.swing.JLabel();
+        alarmLabel3 = new javax.swing.JLabel();
         hourTextField3 = new javax.swing.JTextField();
         minTextField3 = new javax.swing.JTextField();
-        secTextField3 = new javax.swing.JTextField();
         createAlarmButton3 = new javax.swing.JButton();
         freezeTimeButton3 = new javax.swing.JButton();
         continueTimeButton3 = new javax.swing.JButton();
@@ -214,8 +231,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         hourTextField1.setText("0");
 
-        alarmLabel.setForeground(new java.awt.Color(255, 0, 51));
-        alarmLabel.setText("ALARM ");
+        alarmLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        alarmLabel1.setText("ALARM!");
 
         secTextField1.setText("1");
 
@@ -272,61 +289,51 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         stopTimeButton2.setText("Stop time clock2");
-
-        alarmLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        alarmLabel1.setText("ALARM!");
+        stopTimeButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopTimeButton2ActionPerformed(evt);
+            }
+        });
 
         alarmLabel2.setForeground(new java.awt.Color(255, 0, 51));
         alarmLabel2.setText("ALARM!");
 
+        TimeLabel3.setText("TimeLabel3");
+
         alarmLabel3.setForeground(new java.awt.Color(255, 0, 51));
         alarmLabel3.setText("ALARM!");
-
-        alarmLabel4.setForeground(new java.awt.Color(255, 0, 51));
-        alarmLabel4.setText("ALARM!");
-
-        alarmLabel5.setForeground(new java.awt.Color(255, 0, 51));
-        alarmLabel5.setText("ALARM!");
-
-        TimeLabel3.setText("TimeLabel2");
-
-        alarmLabel6.setForeground(new java.awt.Color(255, 0, 51));
-        alarmLabel6.setText("ALARM!");
-
-        alarmLabel7.setForeground(new java.awt.Color(255, 0, 51));
-        alarmLabel7.setText("ALARM!");
-
-        alarmLabel8.setForeground(new java.awt.Color(255, 0, 51));
-        alarmLabel8.setText("ALARM!");
 
         hourTextField3.setText("0");
 
         minTextField3.setText("0");
 
-        secTextField3.setText("1");
-
-        createAlarmButton3.setText("Create alarm clock2");
+        createAlarmButton3.setText("Create alarm clock3");
         createAlarmButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createAlarmButton3ActionPerformed(evt);
             }
         });
 
-        freezeTimeButton3.setText("Freeze time clock2");
+        freezeTimeButton3.setText("Freeze time clock3");
         freezeTimeButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 freezeTimeButton3ActionPerformed(evt);
             }
         });
 
-        continueTimeButton3.setText("Continue time clock2");
+        continueTimeButton3.setText("Continue time clock3");
         continueTimeButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 continueTimeButton3ActionPerformed(evt);
             }
         });
 
-        stopTimeButton3.setText("Stop time clock2");
+        stopTimeButton3.setText("Stop time clock3");
+        stopTimeButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopTimeButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -348,7 +355,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(setFClockTimeButton))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(alarmLabel)
+                            .addComponent(alarmLabel1)
                             .addComponent(continueTimeButton1)
                             .addComponent(stopTimeButton1)
                             .addComponent(TimeLabel1)
@@ -359,33 +366,30 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(minTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(secTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(alarmLabel1)
-                            .addComponent(alarmLabel2))
+                                .addComponent(secTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(3, 3, 3)
-                                    .addComponent(hourTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(minTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(secTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(26, 26, 26))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(continueTimeButton2)
-                                    .addComponent(freezeTimeButton2, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addComponent(createAlarmButton2)
-                                .addComponent(stopTimeButton2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(TimeLabel2)
-                                    .addComponent(alarmLabel3)
-                                    .addComponent(alarmLabel4)
-                                    .addComponent(alarmLabel5))
-                                .addGap(78, 78, 78)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(alarmLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(hourTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(minTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(secTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(26, 26, 26))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(continueTimeButton2)
+                                        .addComponent(freezeTimeButton2, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(createAlarmButton2)
+                                    .addComponent(stopTimeButton2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -393,9 +397,7 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(hourTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(minTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(secTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(26, 26, 26))
+                                    .addGap(71, 71, 71))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(continueTimeButton3)
                                     .addComponent(freezeTimeButton3, javax.swing.GroupLayout.Alignment.LEADING))
@@ -404,9 +406,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(TimeLabel3)
-                                    .addComponent(alarmLabel6)
-                                    .addComponent(alarmLabel7)
-                                    .addComponent(alarmLabel8))
+                                    .addComponent(alarmLabel3))
                                 .addGap(78, 78, 78)))
                         .addGap(35, 35, 35))))
         );
@@ -420,20 +420,12 @@ public class MainFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(TimeLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(alarmLabel3)
-                                .addGap(10, 10, 10)
-                                .addComponent(alarmLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(alarmLabel5))
+                                .addComponent(alarmLabel2))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(TimeLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(alarmLabel)
-                                .addGap(10, 10, 10)
-                                .addComponent(alarmLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(alarmLabel2)))
-                        .addGap(36, 36, 36)
+                                .addComponent(alarmLabel1)))
+                        .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -466,15 +458,10 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TimeLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(alarmLabel6)
-                        .addGap(10, 10, 10)
-                        .addComponent(alarmLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(alarmLabel8)
-                        .addGap(36, 36, 36)
+                        .addComponent(alarmLabel3)
+                        .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(hourTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(secTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(minTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(createAlarmButton3)
@@ -506,54 +493,71 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_startTimeButtonActionPerformed
 
-    private void createAlarmButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAlarmButton1ActionPerformed
-        int hour = JSType.toInteger(hourTextField1.getText());
-        int min = JSType.toInteger(minTextField1.getText());
-        int sec = JSType.toInteger(secTextField1.getText());
-        
-        IEventListener alarm = AlarmFabric.hmsAlarmCreate(hour, min, sec);
-        hms_clock1.addEventListener(alarm);
-    }//GEN-LAST:event_createAlarmButton1ActionPerformed
-
     private void createAlarmButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAlarmButton2ActionPerformed
-        // TODO add your handling code here:
+        int hour = Integer.parseInt(hourTextField2.getText());
+        int min = Integer.parseInt(minTextField2.getText());
+        int sec = Integer.parseInt(secTextField2.getText());
+
+        IEventListener alarm = AlarmFabric.hmsAlarmCreate(hour, min, sec);
+        hms_clock2.addEventListener(alarm);
     }//GEN-LAST:event_createAlarmButton2ActionPerformed
-
-    private void freezeTimeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freezeTimeButton1ActionPerformed
-        freezeTime();
-    }//GEN-LAST:event_freezeTimeButton1ActionPerformed
-
-    private void continueTimeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueTimeButton1ActionPerformed
-        continueTime();
-    }//GEN-LAST:event_continueTimeButton1ActionPerformed
 
     private void setFClockTimeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setFClockTimeButtonActionPerformed
         
     }//GEN-LAST:event_setFClockTimeButtonActionPerformed
 
     private void freezeTimeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freezeTimeButton2ActionPerformed
-        // TODO add your handling code here:
+        hms_clock2_manager.freezeTime();
     }//GEN-LAST:event_freezeTimeButton2ActionPerformed
 
     private void continueTimeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueTimeButton2ActionPerformed
-        // TODO add your handling code here:
+        hms_clock2_manager.continueTime();
     }//GEN-LAST:event_continueTimeButton2ActionPerformed
 
     private void createAlarmButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAlarmButton3ActionPerformed
-        // TODO add your handling code here:
+        int hour = Integer.parseInt(hourTextField3.getText());
+        int min = Integer.parseInt(minTextField3.getText());
+
+        IEventListener alarm = AlarmFabric.hmAlarmCreate(hour, min);
+        hm_clock.addEventListener(alarm);
     }//GEN-LAST:event_createAlarmButton3ActionPerformed
 
     private void freezeTimeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freezeTimeButton3ActionPerformed
-        // TODO add your handling code here:
+        hm_clock_manager.freezeTime();
     }//GEN-LAST:event_freezeTimeButton3ActionPerformed
 
     private void continueTimeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueTimeButton3ActionPerformed
-        // TODO add your handling code here:
+        hm_clock_manager.continueTime();
     }//GEN-LAST:event_continueTimeButton3ActionPerformed
 
     private void stopTimeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopTimeButton1ActionPerformed
-        stopTime();
+        hms_clock1_manager.stopTime();
     }//GEN-LAST:event_stopTimeButton1ActionPerformed
+
+    private void continueTimeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueTimeButton1ActionPerformed
+        hms_clock1_manager.continueTime();
+    }//GEN-LAST:event_continueTimeButton1ActionPerformed
+
+    private void freezeTimeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freezeTimeButton1ActionPerformed
+        hms_clock1_manager.freezeTime();
+    }//GEN-LAST:event_freezeTimeButton1ActionPerformed
+
+    private void createAlarmButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAlarmButton1ActionPerformed
+        int hour = Integer.parseInt(hourTextField1.getText());
+        int min = Integer.parseInt(minTextField1.getText());
+        int sec = Integer.parseInt(secTextField1.getText());
+
+        IEventListener alarm = AlarmFabric.hmsAlarmCreate(hour, min, sec);
+        hms_clock1.addEventListener(alarm);
+    }//GEN-LAST:event_createAlarmButton1ActionPerformed
+
+    private void stopTimeButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopTimeButton2ActionPerformed
+        hms_clock2_manager.stopTime();
+    }//GEN-LAST:event_stopTimeButton2ActionPerformed
+
+    private void stopTimeButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopTimeButton3ActionPerformed
+        hm_clock_manager.stopTime();
+    }//GEN-LAST:event_stopTimeButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -594,15 +598,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel TimeLabel1;
     private javax.swing.JLabel TimeLabel2;
     private javax.swing.JLabel TimeLabel3;
-    private javax.swing.JLabel alarmLabel;
     private javax.swing.JLabel alarmLabel1;
     private javax.swing.JLabel alarmLabel2;
     private javax.swing.JLabel alarmLabel3;
-    private javax.swing.JLabel alarmLabel4;
-    private javax.swing.JLabel alarmLabel5;
-    private javax.swing.JLabel alarmLabel6;
-    private javax.swing.JLabel alarmLabel7;
-    private javax.swing.JLabel alarmLabel8;
     private javax.swing.JLabel commentLabel;
     private javax.swing.JButton continueTimeButton1;
     private javax.swing.JButton continueTimeButton2;
@@ -622,7 +620,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField minTextField3;
     private javax.swing.JTextField secTextField1;
     private javax.swing.JTextField secTextField2;
-    private javax.swing.JTextField secTextField3;
     private javax.swing.JButton setFClockTimeButton;
     private javax.swing.JButton startTimeButton;
     private javax.swing.JButton stopTimeButton1;

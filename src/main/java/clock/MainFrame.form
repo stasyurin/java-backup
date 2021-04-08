@@ -43,7 +43,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="alarmLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="alarmLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="continueTimeButton1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="stopTimeButton1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="TimeLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -56,39 +56,37 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="secTextField1" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="alarmLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="alarmLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
-                                  <Component id="hourTextField2" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="minTextField2" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="secTextField2" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Component id="continueTimeButton2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="freezeTimeButton2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="createAlarmButton2" min="-2" max="-2" attributes="0"/>
-                              <Component id="stopTimeButton2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="TimeLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="alarmLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="alarmLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="alarmLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="alarmLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                              <EmptySpace pref="179" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
+                                      <Component id="hourTextField2" min="-2" pref="39" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="minTextField2" min="-2" pref="39" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="secTextField2" min="-2" pref="39" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="continueTimeButton2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="freezeTimeButton2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="createAlarmButton2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stopTimeButton2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
@@ -96,9 +94,7 @@
                                   <Component id="hourTextField3" min="-2" pref="39" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="minTextField3" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="secTextField3" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                   <Component id="continueTimeButton3" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -110,9 +106,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="TimeLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="alarmLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="alarmLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="alarmLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="alarmLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                           </Group>
@@ -133,23 +127,15 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="TimeLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="alarmLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Component id="alarmLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="alarmLabel5" min="-2" max="-2" attributes="0"/>
+                              <Component id="alarmLabel2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="TimeLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="alarmLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="alarmLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="alarmLabel2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -188,15 +174,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="TimeLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="alarmLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="alarmLabel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="alarmLabel8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="alarmLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="hourTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="secTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="minTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -269,12 +250,12 @@
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="alarmLabel">
+    <Component class="javax.swing.JLabel" name="alarmLabel1">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ALARM "/>
+        <Property name="text" type="java.lang.String" value="ALARM!"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="secTextField1">
@@ -359,14 +340,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Stop time clock2"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="alarmLabel1">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="0" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="ALARM!"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopTimeButton2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="alarmLabel2">
       <Properties>
@@ -376,52 +352,12 @@
         <Property name="text" type="java.lang.String" value="ALARM!"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="alarmLabel3">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="0" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="ALARM!"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="alarmLabel4">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="0" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="ALARM!"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="alarmLabel5">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="0" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="ALARM!"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="TimeLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TimeLabel2"/>
+        <Property name="text" type="java.lang.String" value="TimeLabel3"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="alarmLabel6">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="0" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="ALARM!"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="alarmLabel7">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="33" green="0" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="ALARM!"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="alarmLabel8">
+    <Component class="javax.swing.JLabel" name="alarmLabel3">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="0" red="ff" type="rgb"/>
@@ -439,14 +375,9 @@
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="secTextField3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="createAlarmButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Create alarm clock2"/>
+        <Property name="text" type="java.lang.String" value="Create alarm clock3"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createAlarmButton3ActionPerformed"/>
@@ -454,7 +385,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="freezeTimeButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Freeze time clock2"/>
+        <Property name="text" type="java.lang.String" value="Freeze time clock3"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="freezeTimeButton3ActionPerformed"/>
@@ -462,7 +393,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="continueTimeButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Continue time clock2"/>
+        <Property name="text" type="java.lang.String" value="Continue time clock3"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="continueTimeButton3ActionPerformed"/>
@@ -470,8 +401,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="stopTimeButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Stop time clock2"/>
+        <Property name="text" type="java.lang.String" value="Stop time clock3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopTimeButton3ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
