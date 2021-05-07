@@ -7,6 +7,7 @@ package clock;
 
 import alarm.IEventListener;
 import java.util.ArrayList;
+import serverclock.IObserver;
 
 
 /**
@@ -20,6 +21,11 @@ public interface IClock {
     boolean isPause();
     void setPause(boolean pause);
     void addEventListener(IEventListener event_listener);
+    void addEventObserver(IObserver o);
+    boolean isAlreadyInAll_o(IObserver o);
     public ArrayList<IEventListener> get_event_listeners();
+    boolean isAlarm_now();
+    void setAlarm_now(boolean alarm_now);
+    void timeChanged();
     //void startClock(SetType time_type);
 }

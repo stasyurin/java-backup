@@ -23,33 +23,33 @@ public class HMSAlarmChecker extends HMAlarmChecker {
     
     @Override
     public void run() {
-            while (true) {
-                try {
-                    for (Iterator<IEventListener> iterator = alarms.iterator(); iterator.hasNext();) {
-                        IEventListener next = iterator.next();
-                        if (clock.getTime(SetType.hour) == next.getTime(SetType.hour)
-                                && clock.getTime(SetType.min) == next.getTime(SetType.min)
-                                && clock.getTime(SetType.sec) == next.getTime(SetType.sec)) {
-
-                            next.setAlarm_now(true);
-
-                            Thread alarmTurnOffThread = new Thread() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        Thread.sleep(3000);
-                                        next.setAlarm_now(false);
-                                    } catch (InterruptedException e) {
-                                        System.out.println(e);
-                                    }
-                                }
-                            };
-                            alarmTurnOffThread.start();
-                        }
-                    }
-                } catch (SetTimeException e) {
-                    System.out.println(e);
-                }
-            }
+//            while (true) {
+//                try {
+//                    for (Iterator<IEventListener> iterator = alarms.iterator(); iterator.hasNext();) {
+//                        IEventListener next = iterator.next();
+//                        if (clock.getTime(SetType.hour) == next.getTime(SetType.hour)
+//                                && clock.getTime(SetType.min) == next.getTime(SetType.min)
+//                                && clock.getTime(SetType.sec) == next.getTime(SetType.sec)) {
+//
+//                            next.setAlarm_now(true);
+//
+//                            Thread alarmTurnOffThread = new Thread() {
+//                                @Override
+//                                public void run() {
+//                                    try {
+//                                        Thread.sleep(3000);
+//                                        next.setAlarm_now(false);
+//                                    } catch (InterruptedException e) {
+//                                        System.out.println(e);
+//                                    }
+//                                }
+//                            };
+//                            alarmTurnOffThread.start();
+//                        }
+//                    }
+//                } catch (SetTimeException e) {
+//                    System.out.println(e);
+//                }
+//            }
     }
 }

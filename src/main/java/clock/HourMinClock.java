@@ -10,6 +10,7 @@ import Exceptions.TimeForwardException;
 import alarm.IEventListener;
 import java.util.ArrayList;
 import alarm.IEventListener;
+import serverclock.IObserver;
 
 /**
  *
@@ -19,18 +20,40 @@ public class HourMinClock extends Clock implements IClock{
     int hour_hand = 0;
     int min_hand = 0;
     boolean pause = false;
+    boolean alarm_now = false;
     
     ArrayList <IEventListener> event_listeners = new ArrayList<>();
+    ArrayList <IObserver> all_o = new ArrayList<>();
+
+    @Override
+    public boolean isAlarm_now() {
+        return alarm_now;
+    }
+
+    @Override
+    public void setAlarm_now(boolean alarm_now) {
+        this.alarm_now = alarm_now;
+    }
     
-    protected void timeChanged() {
+    
+    
+    public void timeChanged() {
         event_listeners.forEach(event_listener -> {
             event_listener.handleEvent(this);
+        });
+        all_o.forEach(o -> {
+            o.update();
         });
     }
     
     @Override
     public void addEventListener(IEventListener event_listener) {
         event_listeners.add(event_listener);
+    }
+    
+    @Override
+    public void addEventObserver(IObserver o) {
+        all_o.add(o);
     }
 
     /**
@@ -41,8 +64,6 @@ public class HourMinClock extends Clock implements IClock{
     public ArrayList<IEventListener> get_event_listeners() {
         return event_listeners;
     }
-    
-    
     
     @Override
     public void setTime(int val, SetType t) throws SetTimeException {
@@ -171,6 +192,17 @@ public class HourMinClock extends Clock implements IClock{
     public boolean isPause() {
         return pause;
     }
+
+    @Override
+    public boolean isAlreadyInAll_o(IObserver o) {
+        for (IObserver o_from_all_o : all_o) {
+            if (o == o_from_all_o)
+                return true;
+        }
+        return false;
+    }
+
+
 
 
     

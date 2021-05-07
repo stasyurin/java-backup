@@ -53,6 +53,8 @@ public class TimeMovement implements Runnable {
             }
         } catch (InterruptedException ex) {
             clock.setPause(false);
+            clock.setAlarm_now(false);
+            clock.timeChanged();
             try {
                 clock.setTime(0, SetType.hour);
                 clock.setTime(0, SetType.min);

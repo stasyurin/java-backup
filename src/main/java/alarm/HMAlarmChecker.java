@@ -28,31 +28,31 @@ public class HMAlarmChecker implements Runnable {
     
     @Override
     public void run() {
-        while (true) {
-            try {
-                for (IEventListener alarm : alarms) {
-                    if (clock.getTime(SetType.min) == alarm.getTime(SetType.min)
-                            && clock.getTime(SetType.hour) == alarm.getTime(SetType.hour)) {
-                        alarm.setAlarm_now(true);
-
-                        Thread alarmTurnOffThread;
-                        alarmTurnOffThread = new Thread() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(3000);
-                                    alarm.setAlarm_now(false);
-                                } catch (InterruptedException e) {
-                                    System.out.println(e);
-                                }
-                            }
-                        };
-                        alarmTurnOffThread.start();
-                    }
-                }
-            } catch (SetTimeException e) {
-                System.out.println(e);
-            }
-        }
+//        while (true) {
+//            try {
+//                for (IEventListener alarm : alarms) {
+//                    if (clock.getTime(SetType.min) == alarm.getTime(SetType.min)
+//                            && clock.getTime(SetType.hour) == alarm.getTime(SetType.hour)) {
+//                        alarm.setAlarm_now(true);
+//
+//                        Thread alarmTurnOffThread;
+//                        alarmTurnOffThread = new Thread() {
+//                            @Override
+//                            public void run() {
+//                                try {
+//                                    Thread.sleep(3000);
+//                                    alarm.setAlarm_now(false);
+//                                } catch (InterruptedException e) {
+//                                    System.out.println(e);
+//                                }
+//                            }
+//                        };
+//                        alarmTurnOffThread.start();
+//                    }
+//                }
+//            } catch (SetTimeException e) {
+//                System.out.println(e);
+//            }
+//        }
     }
 }

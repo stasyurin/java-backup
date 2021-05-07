@@ -67,14 +67,14 @@ public class HourMinSecAlarm extends HourMinAlarm {
                     && clock.getTime(SetType.min) == min
                     && clock.getTime(SetType.sec) == sec) {
                 
-                setAlarm_now(true);
+                clock.setAlarm_now(true);
                 
                 Thread alarmTurnOffThread = new Thread() {
                     @Override
                     public void run() {
                         try {
                             Thread.sleep(3000);
-                            setAlarm_now(false);
+                            clock.setAlarm_now(false);
                         } catch (InterruptedException e) {
                             System.out.println(e);
                         }

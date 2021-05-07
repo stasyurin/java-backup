@@ -18,23 +18,10 @@ import java.util.logging.Logger;
 public class HourMinAlarm implements IEventListener {
 
     int hour, min;
-    boolean alarm_now = false;
 
     public HourMinAlarm(int hour, int min) {
         this.hour = hour;
         this.min = min;
-    }
-
-
-    
-    @Override
-    public void setAlarm_now(boolean alarm_now) {
-        this.alarm_now = alarm_now;
-    }
-
-    @Override
-    public boolean isAlarm_now() {
-        return alarm_now;
     }
     
     
@@ -104,7 +91,7 @@ public class HourMinAlarm implements IEventListener {
         try {
             if (clock.getTime(SetType.min) == min
                     && clock.getTime(SetType.hour) == hour) {
-                setAlarm_now(true);
+                clock.setAlarm_now(true);
                 
                 Thread alarmTurnOffThread;
                 alarmTurnOffThread = new Thread() {
@@ -112,7 +99,7 @@ public class HourMinAlarm implements IEventListener {
                     public void run() {
                         try {
                             Thread.sleep(3000);
-                            setAlarm_now(false);
+                            clock.setAlarm_now(false);
                         } catch (InterruptedException e) {
                             System.out.println(e);
                         }
@@ -124,6 +111,7 @@ public class HourMinAlarm implements IEventListener {
             System.out.println(ex);
         }
     }
+
     
     
 }

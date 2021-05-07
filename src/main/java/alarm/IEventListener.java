@@ -17,6 +17,4 @@ public interface IEventListener {
     void handleEvent(IClock clock);
     void setTime(int val, SetType t) throws Exceptions.SetTimeException;
     int getTime(SetType t) throws Exceptions.SetTimeException;
-    void setAlarm_now(boolean alarm_now);
-    boolean isAlarm_now();
 }
